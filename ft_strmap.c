@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 23:54:51 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/24 16:26:36 by mdupuy           ###   ########.fr       */
+/*   Created: 2016/11/23 05:34:14 by mdupuy            #+#    #+#             */
+/*   Updated: 2016/11/23 05:44:49 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strmap(char const *s, char (*f) (char))
 {
-	char	*ptr;
-	size_t	i;
+	char	*fstr;
+	int		i;
+	int		j;
 
-	ptr = s;
-	i = 0;
-	while (i < n)
+	if (s && f)
 	{
-		ptr[i] = '\0';
-		i++;
+		i = 0;
+		j = ft_strlen((char *)s);
+		fstr = (char *)malloc(sizeof(*fstr) * j);
+		while (s[i] != 0)
+		{
+			fstr[i] = f(s[i]);
+			i++;
+		}
+		return (fstr);
 	}
+	return (NULL);
 }

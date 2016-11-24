@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 23:54:51 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/24 16:26:36 by mdupuy           ###   ########.fr       */
+/*   Created: 2016/11/23 05:24:38 by mdupuy            #+#    #+#             */
+/*   Updated: 2016/11/23 05:33:40 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_striter(char *s, void (*f)(char *))
 {
-	char	*ptr;
-	size_t	i;
+	int i;
 
-	ptr = s;
 	i = 0;
-	while (i < n)
+	if (s == NULL)
+		return ;
+	while (s[i] != '\0')
 	{
-		ptr[i] = '\0';
+		f(&s[i]);
 		i++;
 	}
 }

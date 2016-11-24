@@ -6,7 +6,7 @@
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 23:57:29 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/21 04:07:03 by mdupuy           ###   ########.fr       */
+/*   Updated: 2016/11/23 02:41:03 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strstr(const char *s1, const char *s2)
 
 	i = 0;
 	j = 0;
-	len = (int)ft_strlen(*s2);
+	len = (int)ft_strlen(s2);
 	if (len == 0)
 		return ((char *)s1);
 	while (s1[i])

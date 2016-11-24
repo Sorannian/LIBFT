@@ -6,7 +6,7 @@
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 23:56:22 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/21 01:25:20 by mdupuy           ###   ########.fr       */
+/*   Updated: 2016/11/23 02:34:28 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	*ft_memset(void *b, int c, size_t len)
 	size_t	i;
 
 	ptr = b;
-	while (i < n)
+	i = 0;
+	while (i < len)
 	{
 		ptr[i] = c;
 		i++;
