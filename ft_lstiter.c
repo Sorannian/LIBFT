@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 23:54:36 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/27 13:47:31 by mdupuy           ###   ########.fr       */
+/*   Created: 2016/12/07 00:42:40 by mdupuy            #+#    #+#             */
+/*   Updated: 2016/12/12 00:44:00 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	size_t i;
+	t_list *tmp;
 
-	i = 0;
-	while (src[i] != '\0' && (i < n))
+	if (lst)
 	{
-		dest[i] = src[i];
-		i++;
+		tmp = lst;
+		while (tmp)
+		{
+			(*f)(tmp);
+			tmp = tmp->next;
+		}
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
 }

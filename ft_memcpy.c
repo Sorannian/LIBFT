@@ -6,7 +6,7 @@
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 23:54:15 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/23 02:50:09 by mdupuy           ###   ########.fr       */
+/*   Updated: 2016/11/27 14:58:58 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char		*srcpy;
-	char		*destcpy;
-	size_t		i;
+	char	*srcpy;
+	char	*destcpy;
+	size_t	i;
 
 	srcpy = (char *)src;
 	destcpy = (char *)dest;

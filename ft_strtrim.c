@@ -6,37 +6,58 @@
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 07:32:36 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/24 16:56:18 by mdupuy           ###   ########.fr       */
+/*   Updated: 2016/12/06 05:03:16 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static size_t	ft_trimlen(char *s)
 {
-	char	*tmp;
-	size_t	len;
 	size_t	i;
+	size_t	spaces;
+	size_t	len;
 
 	len = ft_strlen(s);
-	i = -1;
-	while (s[len - 1] == ' ' || s[len - 1] == '\n' || s[len - 1] == '\t')
-		len--;
-	while ((s[++i] == ' ') || (s[i] != '\n') || (s[i] == '\t'))
-		len--;
-	if (len <= 0)
-		len = 0;
-	if ((tmp = (char*)malloc(sizeof(char) * len + 1)) == NULL)
-		return (NULL);
-	while (s[i] != '\0')
+	i = 0;
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	spaces = i;
+	if (s[i] != '\0')
 	{
-		tmp[i] = s[i];
+		i = len - 1;
+		while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		{
+			i--;
+			spaces++;
+		}
+	}
+	return (len - spaces);
+}
+
+char			*ft_strtrim(char const *s)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+	size_t	trim_len;
+
+	i = 0;
+	j = 0;
+	if (!(s))
+		return (NULL);
+	trim_len = ft_trimlen((char *)s);
+	str = (char *)malloc(sizeof(*str) * (trim_len + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	while (j < trim_len)
+	{
+		str[j] = s[i];
+		j++;
 		i++;
 	}
-	s += i;
-	i = -1;
-	while (++i < len)
-		tmp[i] = *s++;
-	tmp[i] = '\0';
-	return (tmp);
+	str[j] = '\0';
+	return (str);
 }

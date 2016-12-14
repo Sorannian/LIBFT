@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_countn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 23:54:36 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/27 13:47:31 by mdupuy           ###   ########.fr       */
+/*   Created: 2016/12/07 05:58:06 by mdupuy            #+#    #+#             */
+/*   Updated: 2016/12/07 05:59:36 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+int	ft_countn(const char *s, char c)
 {
-	size_t i;
+	int wn;
+	int i;
 
 	i = 0;
-	while (src[i] != '\0' && (i < n))
+	wn = 0;
+	while (s[i])
 	{
-		dest[i] = src[i];
-		i++;
+		while (s[i] == c)
+			i++;
+		if (s[i] != c && (s[i]))
+		{
+			while (s[i] != c && s[i])
+				i++;
+			wn++;
+		}
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+	return (wn);
 }

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_digicount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 23:54:36 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/27 13:47:31 by mdupuy           ###   ########.fr       */
+/*   Created: 2016/12/02 02:35:04 by mdupuy            #+#    #+#             */
+/*   Updated: 2016/12/02 02:35:11 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+int	ft_digicount(int n)
 {
-	size_t i;
+	int		res;
 
-	i = 0;
-	while (src[i] != '\0' && (i < n))
+	res = 0;
+	if (n == -2147483648)
 	{
-		dest[i] = src[i];
-		i++;
+		res += 2;
+		n = 147483648;
 	}
-	while (i < n)
+	if (n < 0)
 	{
-		dest[i] = '\0';
-		i++;
+		res++;
+		n = n * -1;
 	}
-	return (dest);
+	while (n >= 10)
+	{
+		n = n / 10;
+		res++;
+	}
+	res++;
+	return (res);
 }

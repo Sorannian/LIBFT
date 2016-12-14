@@ -5,57 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdupuy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/24 13:40:38 by mdupuy            #+#    #+#             */
-/*   Updated: 2016/11/24 16:35:06 by mdupuy           ###   ########.fr       */
+/*   Created: 2016/12/02 05:57:21 by mdupuy            #+#    #+#             */
+/*   Updated: 2016/12/02 05:58:28 by mdupuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_digicount(int n)
+char	*ft_itoa(int n)
 {
-	int		res;
+	int		nb_digit;
+	int		nb;
+	int		neg;
+	char	*str;
 
-	res = 0;
-	if (n == -2147483648)
-	{
-		res += 2;
-		n = 147483648;
-	}
-	if (n < 0)
-	{
-		res++;
-		n = n * -1;
-	}
-	while (n >= 10)
-	{
-		n = n / 10;
-		res++;
-	}
-	res++;
-	return (res);
-}
-
-char		*ft_itoa(int n)
-{
-	char	*dest;
-	size_t	j;
-
-	if ((dest = (char*)malloc(sizeof(ft_digicount(n)))) == NULL)
+	nb_digit = 1;
+	neg = (n < 0) ? 1 : 0;
+	n *= (n > 0) ? -1 : 1;
+	nb = n;
+	while ((nb /= 10) < 0)
+		nb_digit++;
+	if ((str = (char *)malloc((sizeof(char) * nb_digit) + neg + 1)) == NULL)
 		return (NULL);
-	j = ft_digicount(n) - 1;
-	if (n < 0)
+	ft_bzero(str, nb_digit + neg + 1);
+	str[0] = '-';
+	nb_digit -= 1 - neg;
+	while (nb_digit-- >= neg)
 	{
-		n = n * -1;
-		dest[0] = '-';
+		str[nb_digit + 1] = (-(n % 10) + 48);
+		n /= 10;
 	}
-	while (n >= 10)
-	{
-		dest[j] = (n % 10) + 48;
-		n = n / 10;
-		j--;
-	}
-	if (n < 10)
-		dest[j] = (n + 48);
-	return (dest);
+	return (str);
 }
